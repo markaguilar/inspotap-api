@@ -50,8 +50,63 @@ const userSchema = mongoose.Schema(
     role: {
       type: String,
       enum: roles,
-      default: 'student',
+      default: 'cashier',
     },
+
+    // ── POS access control ─────────────────────────────────────────────────
+    /**
+     * Owner can toggle this off to immediately block a cashier from processing
+     * checkouts without deleting their account.
+     * Owners always bypass this — checked in canCheckout.middleware.js.
+     */
+    canCheckout: {
+      type: Boolean,
+      default: true,
+    },
+
+    /**
+     * Hard disable — blocks login entirely.
+     * Use canCheckout to block POS only; use isActive to block everything.
+     */
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+
+    // ── Security & audit ───────────────────────────────────────────────────
+    /**
+     * Daily checkout limit in pesos.
+     * Null = no limit. Set to e.g. 10000 for a ₱10,000/day cap per cashier.
+     */
+    dailyCheckoutLimit: {
+      type: Number,
+      default: null,
+    },
+
+    /**
+     * Tracks last login metadata for audit purposes.
+     */
+    lastLoginAt: {
+      type: Date,
+      default: null,
+    },
+
+    lastLoginIp: {
+      type: String,
+      default: null,
+    },
+
+    /**
+     * PIN for sensitive actions like applying discounts.
+     * Hashed with bcrypt. Optional — null means no PIN required.
+     * Future use: require PIN for discount above threshold.
+     */
+    pin: {
+      type: String,
+      select: false,
+      default: null,
+    },
+
     isEmailVerified: {
       type: Boolean,
       default: false,
@@ -94,6 +149,27 @@ userSchema.pre('save', async function (next) {
   }
   next();
 });
+
+userSchema.methods.comparePin = function (plain) {
+  if (!this.pin) return Promise.resolve(false);
+  return bcrypt.compare(plain, this.pin);
+};
+
+/** Safe user object — strips sensitive fields for API responses */
+userSchema.methods.toSafeObject = function () {
+  return {
+    _id: this._id,
+    name: this.name,
+    email: this.email,
+    role: this.role,
+    canCheckout: this.canCheckout,
+    isActive: this.isActive,
+    dailyCheckoutLimit: this.dailyCheckoutLimit,
+    lastLoginAt: this.lastLoginAt,
+    createdAt: this.createdAt,
+    updatedAt: this.updatedAt,
+  };
+};
 
 /**
  * @typedef User

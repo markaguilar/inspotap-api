@@ -10,6 +10,7 @@ const proposalRoute = require('./proposal.route');
 const productRoute = require('./product.route');
 const categoryRoute = require('./category.route');
 const unitRoute = require('./unit.route');
+const transactionRoute = require('./transaction.route');
 
 const config = require('../../config/config');
 
@@ -47,6 +48,10 @@ const defaultRoutes = [
   {
     path: '/units',
     route: unitRoute,
+  },
+  {
+    path: '/transactions',
+    route: transactionRoute,
   },
 ];
 

@@ -9,3 +9,6 @@ module.exports.developerValidation = require('./developer.validation');
 module.exports.productValidation = require('./product.validation');
 module.exports.categoryValidation = require('./category.validation');
 module.exports.unitValidation = require('./unit.validation');
+module.exports.transactionValidation = require('./transaction.validation');
+
+module.exports.shiftValidation = require('./shift.validation');
