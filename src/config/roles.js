@@ -1,7 +1,23 @@
 const allRoles = {
-  student: ['manageProjects', 'getProjects', 'editMe'],
-  developer: ['manageProposals', 'getProposals', 'editMe'],
-  admin: ['getUsers', 'manageUsers'],
+  cashier: [
+    'getProducts', // needs to see products on POS screen
+    'getCategories', // needs categories for product filter
+    'getUnits', // needs units for display
+    'processCheckout', // core cashier action
+    'getTransactions', // can view their own transactions only (enforced in service)
+    'manageShift', // open and close their own shift
+  ],
+  owner: [
+    'getUsers',
+    'manageUsers',
+    'processCheckout',
+    'manualEntry',
+    'getTransactions',
+    'manageTransactions',
+    'editTransactions',
+    'voidTransaction',
+    'manageShift',
+  ],
 };
 
 const roles = Object.keys(allRoles);

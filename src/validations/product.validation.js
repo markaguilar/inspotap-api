@@ -87,13 +87,13 @@ const createProduct = {
 const getProducts = {
   query: Joi.object({
     // Full-text search across name + sku
-    search: Joi.string().trim().max(100).optional(),
+    search: Joi.string().trim().max(100).optional().allow(''),
 
     // Filter by category ObjectId
-    category: Joi.string().custom(objectId).optional(),
+    category: Joi.string().custom(objectId).optional().allow(''),
 
     // Filter by unit
-    unit: Joi.string().trim().max(30).optional(),
+    unit: Joi.string().trim().max(30).optional().allow(''),
 
     // Show only low-stock items (stockQty <= lowStockThreshold)
     lowStock: Joi.boolean().optional(),
