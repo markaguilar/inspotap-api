@@ -11,6 +11,7 @@ module.exports.Product = require('./product.model');
 module.exports.Category = require('./category.model');
 module.exports.Unit = require('./unit.model');
 module.exports.Transaction = require('./transaction.model');
+module.exports.Supplier = require('./supplier.model');
 
 // audit
 module.exports.AuditLog = require('./auditLog.model');

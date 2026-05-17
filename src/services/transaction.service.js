@@ -5,15 +5,15 @@ const dayjs = require('dayjs');
 const { Product, Transaction } = require('../models');
 
 const ApiError = require('../utils/ApiError');
+const logger = require('../config/logger');
+const auditLogService = require('./auditLog.service');
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Helpers
-// ─────────────────────────────────────────────────────────────────────────────
+// ── Constants ─────────────────────────────────────────────────────────────────
 
-/**
- * Generate receipt number: TXN-YYYYMMDD-XXXX
- * Uses saleDate so backdated manual entries get the right date prefix.
- */
+const VOID_RATE_THRESHOLD = 3;
+
+// ── Private helpers ───────────────────────────────────────────────────────────
+
 const generateReceiptNo = async (saleDate) => {
   const dateStr = dayjs(saleDate).format('YYYYMMDD');
   const startOfDay = dayjs(saleDate).startOf('day').toDate();
@@ -23,52 +23,48 @@ const generateReceiptNo = async (saleDate) => {
     saleDate: { $gte: startOfDay, $lte: endOfDay },
   });
 
-  const seq = String(count + 1).padStart(4, '0');
-  return `TXN-${dateStr}-${seq}`;
+  return `TXN-${dateStr}-${String(count + 1).padStart(4, '0')}`;
 };
 
-/**
- * Fetch products, validate stock, build enriched item snapshots.
- * @param {Array}   cartItems       - [{ product, qty, overridePrice? }]
- * @param {boolean} skipStockCheck  - skip stock validation (manual entry override)
- * @param {boolean} allowOverride   - allow overridePrice (owner only)
- */
 const buildItems = async (cartItems, skipStockCheck = false, allowOverride = false) => {
   const productIds = cartItems.map((i) => i.product);
   const products = await Product.find({ _id: { $in: productIds }, isActive: true });
 
-  const productMap = Object.fromEntries(products.map((p) => [p._id.toString(), p]));
+  const productMap = products.reduce((acc, p) => {
+    acc[p._id.toString()] = p;
+    return acc;
+  }, {});
 
   const errors = [];
+  const enriched = [];
 
-  const enriched = cartItems
-    .map((item) => {
-      const product = productMap[item.product];
+  cartItems.forEach((item) => {
+    const product = productMap[item.product];
 
-      if (!product) {
-        errors.push(`Product not found: ${item.product}`);
-        return null;
-      }
+    if (!product) {
+      errors.push(`Product not found: ${item.product}`);
+      return;
+    }
 
-      if (!skipStockCheck && product.stockQty < item.qty) {
-        errors.push(`Insufficient stock for "${product.name}". Available: ${product.stockQty}, requested: ${item.qty}.`);
-        return null;
-      }
+    if (!skipStockCheck && product.stockQty < item.qty) {
+      // eslint-disable-next-line no-useless-concat
+      errors.push(`Insufficient stock for "${product.name}". ` + `Available: ${product.stockQty}, requested: ${item.qty}.`);
+      return;
+    }
 
-      const unitPrice = allowOverride && item.overridePrice != null ? item.overridePrice : product.sellingPrice;
+    const unitPrice = allowOverride && item.overridePrice != null ? item.overridePrice : product.sellingPrice;
 
-      return {
-        product: product._id,
-        productName: product.name,
-        sku: product.sku || '',
-        unit: product.unit,
-        qty: item.qty,
-        unitPrice,
-        buyingPrice: product.buyingPrice,
-        totalPrice: unitPrice * item.qty,
-      };
-    })
-    .filter(Boolean);
+    enriched.push({
+      product: product._id,
+      productName: product.name,
+      sku: product.sku || '',
+      unit: product.unit,
+      qty: item.qty,
+      unitPrice,
+      buyingPrice: product.buyingPrice,
+      totalPrice: unitPrice * item.qty,
+    });
+  });
 
   if (errors.length) {
     throw new ApiError(httpStatus.BAD_REQUEST, errors.join(' | '));
@@ -76,40 +72,63 @@ const buildItems = async (cartItems, skipStockCheck = false, allowOverride = fal
 
   return enriched;
 };
-/**
- * Deduct stock atomically using $inc inside a session.
- */
-const deductStock = (items, session) => {
-  return Promise.all(
+
+const deductStock = (items, session) =>
+  Promise.all(
     items.map((item) => Product.findByIdAndUpdate(item.product, { $inc: { stockQty: -item.qty } }, { session, new: true }))
   );
-};
 
-/**
- * Restore stock (used on void).
- */
-const restoreStock = (items, session) => {
-  return Promise.all(
+const restoreStock = (items, session) =>
+  Promise.all(
     items.map((item) => Product.findByIdAndUpdate(item.product, { $inc: { stockQty: item.qty } }, { session, new: true }))
   );
+
+const emitStockUpdate = (io, enriched, updatedProducts) => {
+  if (!io) return;
+  io.emit('stock:updated', {
+    items: enriched.map((i) => ({
+      product: i.product,
+      stockQty: updatedProducts.find((p) => p && p._id.toString() === i.product.toString())?.stockQty ?? null,
+    })),
+  });
 };
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Service methods
-// ─────────────────────────────────────────────────────────────────────────────
+const checkAndEmitLowStock = (io, updatedProducts, performedBy, req) => {
+  if (!io) return;
 
-/**
- * Live POS checkout.
- * Validates stock → saves transaction → deducts stock (all in one MongoDB session).
- *
- * @param {Object} body    - validated checkout body
- * @param {Object} cashier - req.user from auth middleware
- * @param {Object} io      - socket.io instance (optional)
- */
-const checkout = async (body, cashier, io = null) => {
+  const lowStockItems = updatedProducts.filter((p) => p && p.stockQty <= p.lowStockThreshold);
+
+  if (!lowStockItems.length) return;
+
+  io.emit('stock:low', {
+    products: lowStockItems.map((p) => ({
+      _id: p._id,
+      name: p.name,
+      stockQty: p.stockQty,
+    })),
+  });
+
+  lowStockItems.forEach((p) => {
+    auditLogService.log({
+      performedBy,
+      action: 'LOW_STOCK_ALERT',
+      targetModel: 'Product',
+      targetId: p._id,
+      after: {
+        name: p.name,
+        stockQty: p.stockQty,
+        lowStockThreshold: p.lowStockThreshold,
+      },
+      req,
+    });
+  });
+};
+
+// ── checkout ──────────────────────────────────────────────────────────────────
+
+const checkout = async (body, cashier, io = null, req = null) => {
   const { items: cartItems, discount = 0, cashTendered, paymentMethod = 'cash', notes = '' } = body;
 
-  // Build enriched items — cashiers cannot override price
   const enriched = await buildItems(cartItems, false, false);
   const subtotal = enriched.reduce((s, i) => s + i.totalPrice, 0);
   const totalAmount = subtotal - discount;
@@ -117,7 +136,6 @@ const checkout = async (body, cashier, io = null) => {
   const saleDate = new Date();
   const receiptNo = await generateReceiptNo(saleDate);
 
-  // Validate cash tendered covers the total
   if (paymentMethod === 'cash' && cashTendered < totalAmount) {
     throw new ApiError(httpStatus.BAD_REQUEST, `Cash tendered (₱${cashTendered}) is less than total (₱${totalAmount}).`);
   }
@@ -151,27 +169,22 @@ const checkout = async (body, cashier, io = null) => {
     const updatedProducts = await deductStock(enriched, session);
     await session.commitTransaction();
 
-    // Real-time stock update to all connected clients
-    if (io) {
-      io.emit('stock:updated', {
-        items: enriched.map((i) => ({
-          product: i.product,
-          stockQty: updatedProducts.find((p) => p._id.toString() === i.product.toString())?.stockQty ?? null,
-        })),
-      });
+    auditLogService.log({
+      performedBy: cashier,
+      action: 'CHECKOUT',
+      targetModel: 'Transaction',
+      targetId: txn._id,
+      after: {
+        receiptNo: txn.receiptNo,
+        totalAmount: txn.totalAmount,
+        itemCount: txn.items.length,
+        paymentMethod,
+      },
+      req,
+    });
 
-      // Alert if any product is now low stock
-      const lowStockItems = updatedProducts.filter((p) => p && p.stockQty <= p.lowStockThreshold);
-      if (lowStockItems.length) {
-        io.emit('stock:low', {
-          products: lowStockItems.map((p) => ({
-            _id: p._id,
-            name: p.name,
-            stockQty: p.stockQty,
-          })),
-        });
-      }
-    }
+    emitStockUpdate(io, enriched, updatedProducts);
+    checkAndEmitLowStock(io, updatedProducts, cashier, req);
 
     return txn;
   } catch (err) {
@@ -182,11 +195,9 @@ const checkout = async (body, cashier, io = null) => {
   }
 };
 
-/**
- * Manual sale entry (backtrack or quick-tap).
- * Owner-only. Supports backdated saleDate and optional stock skip.
- */
-const manualEntry = async (body, owner, io = null) => {
+// ── manualEntry ───────────────────────────────────────────────────────────────
+
+const manualEntry = async (body, owner, io = null, req = null) => {
   const {
     items: cartItems,
     saleDate: saleDateRaw,
@@ -198,8 +209,6 @@ const manualEntry = async (body, owner, io = null) => {
   } = body;
 
   const saleDate = saleDateRaw ? new Date(saleDateRaw) : new Date();
-
-  // Owners can pass overridePrice per item
   const enriched = await buildItems(cartItems, skipStockCheck, true);
   const subtotal = enriched.reduce((s, i) => s + i.totalPrice, 0);
   const totalAmount = subtotal - discount;
@@ -231,19 +240,33 @@ const manualEntry = async (body, owner, io = null) => {
       { session }
     );
 
+    let updatedProducts = [];
     if (!skipStockCheck) {
-      const updatedProducts = await deductStock(enriched, session);
-      if (io) {
-        io.emit('stock:updated', {
-          items: enriched.map((i) => ({
-            product: i.product,
-            stockQty: updatedProducts.find((p) => p._id.toString() === i.product.toString())?.stockQty ?? null,
-          })),
-        });
-      }
+      updatedProducts = await deductStock(enriched, session);
     }
 
     await session.commitTransaction();
+
+    if (!skipStockCheck) {
+      emitStockUpdate(io, enriched, updatedProducts);
+    }
+
+    auditLogService.log({
+      performedBy: owner,
+      action: 'MANUAL_ENTRY',
+      targetModel: 'Transaction',
+      targetId: txn._id,
+      after: {
+        receiptNo,
+        soldBy,
+        saleDate: txn.saleDate,
+        totalAmount: txn.totalAmount,
+        itemCount: txn.items.length,
+        skipStockCheck,
+      },
+      req,
+    });
+
     return txn;
   } catch (err) {
     await session.abortTransaction();
@@ -253,15 +276,19 @@ const manualEntry = async (body, owner, io = null) => {
   }
 };
 
-/**
- * Paginated transaction list with filters.
- */
-const queryTransactions = async (filter = {}, options = {}) => {
+// ── queryTransactions ─────────────────────────────────────────────────────────
+
+const queryTransactions = async (filter = {}, options = {}, requestingUser) => {
   const { page = 1, limit = 20, sortBy = 'saleDate', sortOrder = 'desc' } = options;
 
   const query = {};
 
-  // Date range — always use saleDate, not createdAt
+  if (requestingUser && requestingUser.role === 'cashier') {
+    query.cashier = requestingUser._id;
+  } else if (filter.cashier) {
+    query.cashier = filter.cashier;
+  }
+
   if (filter.from || filter.to) {
     query.saleDate = {};
     if (filter.from) query.saleDate.$gte = new Date(filter.from);
@@ -275,13 +302,9 @@ const queryTransactions = async (filter = {}, options = {}) => {
   if (filter.source) query.source = filter.source;
   if (filter.status) query.status = filter.status;
   if (filter.paymentMethod) query.paymentMethod = filter.paymentMethod;
-  if (filter.cashier) query.cashier = filter.cashier;
+  if (filter.soldBy) query.soldBy = { $regex: filter.soldBy, $options: 'i' };
 
-  if (filter.soldBy) {
-    query.soldBy = { $regex: filter.soldBy, $options: 'i' };
-  }
-
-  const skip = (page - 1) * limit;
+  const skip = (Number(page) - 1) * Number(limit);
   const sort = { [sortBy]: sortOrder === 'asc' ? 1 : -1 };
 
   const [results, total] = await Promise.all([
@@ -294,24 +317,21 @@ const queryTransactions = async (filter = {}, options = {}) => {
     total,
     page: Number(page),
     limit: Number(limit),
-    pages: Math.ceil(total / limit),
+    pages: Math.ceil(total / Number(limit)),
   };
 };
 
-/**
- * Get single transaction by ID.
- */
+// ── getTransactionById ────────────────────────────────────────────────────────
+
 const getTransactionById = async (id) => {
   const txn = await Transaction.findById(id).populate('cashier', 'name email role');
   if (!txn) throw new ApiError(httpStatus.NOT_FOUND, 'Transaction not found.');
   return txn;
 };
 
-/**
- * Void a transaction — owner only.
- * Marks as voided, restores stock, never deletes the record.
- */
-const voidTransaction = async (id, reason, owner, io = null) => {
+// ── voidTransaction ───────────────────────────────────────────────────────────
+
+const voidTransaction = async (id, reason, owner, io = null, req = null) => {
   const txn = await getTransactionById(id);
 
   if (txn.status !== 'completed') {
@@ -324,6 +344,11 @@ const voidTransaction = async (id, reason, owner, io = null) => {
   try {
     const updatedProducts = await restoreStock(txn.items, session);
 
+    const beforeSnapshot = {
+      status: txn.status,
+      totalAmount: txn.totalAmount,
+    };
+
     txn.status = 'voided';
     txn.voidedAt = new Date();
     txn.voidedBy = owner._id;
@@ -332,14 +357,58 @@ const voidTransaction = async (id, reason, owner, io = null) => {
 
     await session.commitTransaction();
 
-    if (io) {
-      io.emit('stock:updated', {
-        items: txn.items.map((i) => ({
-          product: i.product,
-          stockQty: updatedProducts.find((p) => p?._id.toString() === i.product.toString())?.stockQty ?? null,
-        })),
+    auditLogService.log({
+      performedBy: owner,
+      action: 'TRANSACTION_VOIDED',
+      targetModel: 'Transaction',
+      targetId: txn._id,
+      before: beforeSnapshot,
+      after: {
+        status: 'voided',
+        voidReason: reason,
+        voidedAt: txn.voidedAt,
+        receiptNo: txn.receiptNo,
+        totalAmount: txn.totalAmount,
+      },
+      req,
+    });
+
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const todayVoids = await Transaction.countDocuments({
+      cashier: txn.cashier,
+      saleDate: { $gte: startOfDay },
+      status: 'voided',
+    });
+
+    if (todayVoids > VOID_RATE_THRESHOLD) {
+      if (io) {
+        io.emit('alert:void_rate', {
+          cashierId: txn.cashier,
+          voidCount: todayVoids,
+          threshold: VOID_RATE_THRESHOLD,
+        });
+      }
+
+      auditLogService.log({
+        performedBy: owner,
+        action: 'VOID_RATE_ALERT',
+        targetModel: 'Transaction',
+        targetId: txn._id,
+        metadata: {
+          cashierId: txn.cashier,
+          soldBy: txn.soldBy,
+          todayVoidCount: todayVoids,
+          threshold: VOID_RATE_THRESHOLD,
+        },
+        req,
       });
+
+      logger.warn(`[VoidRateAlert] Cashier ${txn.soldBy} has voided ${todayVoids} transactions today`);
     }
+
+    emitStockUpdate(io, txn.items, updatedProducts);
 
     return txn;
   } catch (err) {

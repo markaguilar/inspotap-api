@@ -4,11 +4,12 @@ const transactionService = require('../services/transaction.service');
 
 /**
  * POST /api/v1/transactions
- * Live POS checkout — any authenticated user with canCheckout = true
  */
 const checkout = catchAsync(async (req, res) => {
   const io = req.app.get('io');
-  const txn = await transactionService.checkout(req.body, req.user, io);
+
+  // Pass req so the service can extract IP + User-Agent for the audit log
+  const txn = await transactionService.checkout(req.body, req.user, io, req);
 
   res.status(httpStatus.CREATED).json({
     success: true,
@@ -19,11 +20,10 @@ const checkout = catchAsync(async (req, res) => {
 
 /**
  * POST /api/v1/transactions/manual
- * Manual backdated entry — owner only
  */
 const manualEntry = catchAsync(async (req, res) => {
   const io = req.app.get('io');
-  const txn = await transactionService.manualEntry(req.body, req.user, io);
+  const txn = await transactionService.manualEntry(req.body, req.user, io, req);
 
   res.status(httpStatus.CREATED).json({
     success: true,
@@ -38,10 +38,11 @@ const manualEntry = catchAsync(async (req, res) => {
 const getTransactions = catchAsync(async (req, res) => {
   const { from, to, source, soldBy, paymentMethod, status, cashier, page, limit, sortBy, sortOrder } = req.query;
 
-  const filter = { from, to, source, soldBy, paymentMethod, status, cashier };
-  const options = { page, limit, sortBy, sortOrder };
-
-  const result = await transactionService.queryTransactions(filter, options);
+  const result = await transactionService.queryTransactions(
+    { from, to, source, soldBy, paymentMethod, status, cashier },
+    { page, limit, sortBy, sortOrder },
+    req.user // passed so cashiers only see their own
+  );
 
   res.status(httpStatus.OK).json({
     success: true,
@@ -69,11 +70,16 @@ const getTransaction = catchAsync(async (req, res) => {
 
 /**
  * PUT /api/v1/transactions/:id/void
- * Owner only
  */
 const voidTransaction = catchAsync(async (req, res) => {
   const io = req.app.get('io');
-  const txn = await transactionService.voidTransaction(req.params.id, req.body.reason, req.user, io);
+  const txn = await transactionService.voidTransaction(
+    req.params.id,
+    req.body.reason,
+    req.user,
+    io,
+    req // for audit log IP
+  );
 
   res.status(httpStatus.OK).json({
     success: true,

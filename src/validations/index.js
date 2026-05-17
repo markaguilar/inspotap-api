@@ -12,3 +12,6 @@ module.exports.unitValidation = require('./unit.validation');
 module.exports.transactionValidation = require('./transaction.validation');
 
 module.exports.shiftValidation = require('./shift.validation');
+
+// reports
+module.exports.reportsValidation = require('./report.validation');

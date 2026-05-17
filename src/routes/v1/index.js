@@ -11,6 +11,8 @@ const productRoute = require('./product.route');
 const categoryRoute = require('./category.route');
 const unitRoute = require('./unit.route');
 const transactionRoute = require('./transaction.route');
+const supplierRoute = require('./supplier.route');
+const reportRoute = require('./report.route');
 
 const config = require('../../config/config');
 
@@ -52,6 +54,14 @@ const defaultRoutes = [
   {
     path: '/transactions',
     route: transactionRoute,
+  },
+  {
+    path: '/suppliers',
+    route: supplierRoute,
+  },
+  {
+    path: '/reports',
+    route: reportRoute,
   },
 ];
 

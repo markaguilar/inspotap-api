@@ -8,6 +8,10 @@ module.exports.productController = require('./product.controller');
 module.exports.categoryController = require('./category.controller');
 module.exports.unitController = require('./unit.controller');
 module.exports.transactionController = require('./transaction.controller');
+module.exports.supplierController = require('./supplier.controller');
 
 // shift
 module.exports.shiftController = require('./shift.controller');
+
+// reports
+module.exports.reportController = require('./report.controller');
