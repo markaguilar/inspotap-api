@@ -1,4 +1,7 @@
+// app.js
 const express = require('express');
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -7,6 +10,7 @@ const compression = require('compression');
 const cors = require('cors');
 const passport = require('passport');
 const httpStatus = require('http-status');
+
 const config = require('./config/config');
 const morgan = require('./config/morgan');
 const { jwtStrategy } = require('./config/passport');
@@ -15,18 +19,53 @@ const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// App + HTTP server
+// Must use createServer(app) so Socket.io and Express share the same port
+// ─────────────────────────────────────────────────────────────────────────────
+
 const app = express();
+const httpServer = createServer(app); // ← wrap Express in an HTTP server
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Socket.io setup
+// ─────────────────────────────────────────────────────────────────────────────
+
+const allowedOrigins = ['http://localhost:5173', config.frontendUrl].filter(Boolean); // remove undefined if frontendUrl is not set
+
+const io = new Server(httpServer, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
+});
+
+// Make io accessible in controllers via req.app.get('io')
+app.set('io', io);
+
+io.on('connection', (socket) => {
+  // eslint-disable-next-line no-console
+  console.log(`[Socket.io] Client connected: ${socket.id}`);
+
+  socket.on('disconnect', () => {
+    // eslint-disable-next-line no-console
+    console.log(`[Socket.io] Client disconnected: ${socket.id}`);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Morgan logging
+// ─────────────────────────────────────────────────────────────────────────────
 
 if (config.env !== 'test') {
   app.use(morgan.successHandler);
   app.use(morgan.errorHandler);
 }
 
-// enable cors
-const allowedOrigins = [
-  'http://localhost:5173',
-  config.frontendUrl, // from your config.js or .env
-];
+// ─────────────────────────────────────────────────────────────────────────────
+// CORS — same origins used by both Express and Socket.io
+// ─────────────────────────────────────────────────────────────────────────────
 
 app.use(
   cors({
@@ -42,48 +81,54 @@ app.use(
     credentials: true, // Allow cookies/auth headers
   })
 );
-
 app.options('*', cors());
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Core middleware
+// ─────────────────────────────────────────────────────────────────────────────
+
 app.use(cookieParser());
-
-// set security HTTP headers
 app.use(helmet());
-
-// parse json request body
 app.use(express.json());
-
-// parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
-
-// sanitize request data
 app.use(xss());
 app.use(mongoSanitize());
-
-// gzip compression
 app.use(compression());
 
-// jwt authentication
+// ─────────────────────────────────────────────────────────────────────────────
+// Passport JWT
+// ─────────────────────────────────────────────────────────────────────────────
+
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
 
-// limit repeated failed requests to auth endpoints
+// ─────────────────────────────────────────────────────────────────────────────
+// Rate limiting — auth endpoints only in production
+// ─────────────────────────────────────────────────────────────────────────────
+
 if (config.env === 'production') {
-  app.use('/v1/auth', authLimiter);
+  app.use('/api/v1/auth', authLimiter);
 }
 
-// v1 api routes
+// ─────────────────────────────────────────────────────────────────────────────
+// API routes
+// ─────────────────────────────────────────────────────────────────────────────
+
 app.use('/api/v1', routes);
 
-// send back a 404 error for any unknown api request
+// ─────────────────────────────────────────────────────────────────────────────
+// 404 + error handlers
+// ─────────────────────────────────────────────────────────────────────────────
+
 app.use((req, res, next) => {
   next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
 });
 
-// convert error to ApiError, if needed
 app.use(errorConverter);
-
-// handle error
 app.use(errorHandler);
 
-module.exports = app;
+// ─────────────────────────────────────────────────────────────────────────────
+// Export BOTH — server.js uses httpServer to listen, tests use app
+// ─────────────────────────────────────────────────────────────────────────────
+
+module.exports = { app, httpServer };

@@ -12,7 +12,11 @@ module.exports.productService = require('./product.service');
 module.exports.categoryService = require('./category.service');
 module.exports.unitService = require('./unit.service');
 module.exports.transactionservice = require('./transaction.service');
+module.exports.supplierService = require('./supplier.service');
 
 // audit log
 module.exports.auditlogservice = require('./auditLog.service');
 module.exports.shiftService = require('./shift.service');
+
+// reports
+module.exports.reportsService = require('./report.service');

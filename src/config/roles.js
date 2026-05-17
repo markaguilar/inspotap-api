@@ -17,6 +17,9 @@ const allRoles = {
     'editTransactions',
     'voidTransaction',
     'manageShift',
+    'getSuppliers',
+    'getReports',
+    'getAuditLogs',
   ],
 };
 
