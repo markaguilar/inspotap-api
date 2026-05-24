@@ -5,34 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c320be33-ebc2-470a-838d-d7ab2b19f223" name="Changes" comment="fixup! initial commit">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/store-inventory-sales-management-system-be.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/report.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/supplier.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/purchaseOrder.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/supplier.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/report.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/supplier.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/report.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/supplier.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validations/report.validation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.husky/post-checkout" beforeDir="false" afterPath="$PROJECT_DIR$/.husky/post-checkout" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.husky/pre-commit" beforeDir="false" afterPath="$PROJECT_DIR$/.husky/pre-commit" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/roles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/transaction.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/transaction.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/transaction.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/transaction.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/product.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/product.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/product.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/product.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/product.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/product.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +27,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/markaguilar/store-inventory-sales-management-system-be-be.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/markaguilar/store-inventory-sales-management-system-be-.git&quot;,
     &quot;accountId&quot;: &quot;20d89011-15ae-4fcb-b146-19a490d8fd84&quot;
   }
 }</component>
@@ -61,61 +37,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000002976251958" />
-      <entry key="MS500" value="1.0495146756828106" />
-      <entry key="S2" value="1.4717191254477189" />
-      <entry key="S5" value="1.7404361197585596" />
-      <entry key="S10" value="1.885403057006397" />
-      <entry key="S30" value="4.963493582143175" />
-      <entry key="S60" value="12.39699772053952" />
-      <entry key="M2" value="21.710931094085186" />
-      <entry key="M5" value="31.65572910290765" />
-      <entry key="M10" value="40.942668459170285" />
-      <entry key="M15" value="53.59330348659426" />
-      <entry key="M30" value="92.93370959600388" />
-      <entry key="H1" value="140.03953228055897" />
-      <entry key="H2" value="177.43756988751392" />
-      <entry key="H4" value="201.14333575409935" />
-      <entry key="D1" value="224.0386770976288" />
-      <entry key="W1" value="228.28300966429714" />
+      <entry key="MS100" value="1.7946993623008916" />
+      <entry key="MS500" value="4.3427733047799215" />
+      <entry key="S2" value="13.363508304680822" />
+      <entry key="S5" value="29.043834183430484" />
+      <entry key="S10" value="47.19817525695255" />
+      <entry key="S30" value="78.71616775609687" />
+      <entry key="S60" value="92.99029081751087" />
+      <entry key="M2" value="102.14628403710755" />
+      <entry key="M5" value="116.4714509030107" />
+      <entry key="M10" value="138.9933825659728" />
+      <entry key="M15" value="158.69573849590284" />
+      <entry key="M30" value="208.07793918308715" />
+      <entry key="H1" value="267.5544867977864" />
+      <entry key="H2" value="317.4004893945292" />
+      <entry key="H4" value="350.23750841028027" />
+      <entry key="D1" value="382.8279576873902" />
+      <entry key="W1" value="388.9611501102046" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="6.461765816318489E-300" />
-      <entry key="S5" value="2.1093103603956977E-120" />
-      <entry key="S10" value="1.4523465014918775E-60" />
-      <entry key="S30" value="1.1324614166564165E-20" />
-      <entry key="S60" value="1.064185983709217E-10" />
-      <entry key="M2" value="1.0361858597080362E-5" />
-      <entry key="M5" value="0.012669543881491134" />
-      <entry key="M10" value="0.2181567112808598" />
-      <entry key="M15" value="0.6477341461780709" />
-      <entry key="M30" value="2.065682726816432" />
-      <entry key="H1" value="3.7770245784790797" />
-      <entry key="H2" value="5.133801086423792" />
-      <entry key="H4" value="5.992434329331188" />
-      <entry key="D1" value="6.82066099074541" />
-      <entry key="W1" value="6.974085568176144" />
+      <entry key="S2" value="3.8904398765813273E-140" />
+      <entry key="S5" value="1.72186652609013E-56" />
+      <entry key="S10" value="1.3121991183086987E-28" />
+      <entry key="S30" value="5.081593417818365E-10" />
+      <entry key="S60" value="2.254238988703282E-5" />
+      <entry key="M2" value="0.004747911512433866" />
+      <entry key="M5" value="0.11885603930663317" />
+      <entry key="M10" value="0.41025201547453494" />
+      <entry key="M15" value="0.7855796004266329" />
+      <entry key="M30" value="2.0954047160938636" />
+      <entry key="H1" value="3.9409899261761803" />
+      <entry key="H2" value="5.568923245505196" />
+      <entry key="H4" value="6.662079660584091" />
+      <entry key="D1" value="7.757743402509031" />
+      <entry key="W1" value="7.964887148375874" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8293197809506417" />
-      <entry key="MS500" value="1.01049689178003" />
-      <entry key="S2" value="1.4568794013197375" />
-      <entry key="S5" value="1.7332184499086272" />
-      <entry key="S10" value="1.88149087966056" />
-      <entry key="S30" value="4.961070980056301" />
-      <entry key="S60" value="12.394149498214059" />
-      <entry key="M2" value="21.708258246663537" />
-      <entry key="M5" value="31.66619819769462" />
-      <entry key="M10" value="41.15662429234767" />
-      <entry key="M15" value="54.234023932624545" />
-      <entry key="M30" value="94.98872090717232" />
-      <entry key="H1" value="143.80678103453724" />
-      <entry key="H2" value="182.5646958589375" />
-      <entry key="H4" value="207.13186241339358" />
-      <entry key="D1" value="230.85859468387807" />
-      <entry key="W1" value="235.256986587215" />
+      <entry key="MS100" value="1.7171877136360616" />
+      <entry key="MS500" value="4.305785895171741" />
+      <entry key="S2" value="13.329515043093947" />
+      <entry key="S5" value="29.00865798721739" />
+      <entry key="S10" value="47.16244331229682" />
+      <entry key="S30" value="78.68884328665644" />
+      <entry key="S60" value="92.97241038470146" />
+      <entry key="M2" value="102.14020910204583" />
+      <entry key="M5" value="116.58102205475545" />
+      <entry key="M10" value="139.39332625411618" />
+      <entry key="M15" value="159.47015922650732" />
+      <entry key="M30" value="210.16075841984707" />
+      <entry key="H1" value="271.48429729657266" />
+      <entry key="H2" value="322.96165819299057" />
+      <entry key="H4" value="356.8949810310252" />
+      <entry key="D1" value="390.58481095417113" />
+      <entry key="W1" value="396.92590678753686" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -136,7 +112,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "suppliers",
+    "git-widget-placeholder": "product-search-params",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.nodejs.core.library.configured.version": "24.14.0",
     "javascript.nodejs.core.library.typings.version": "24.12.4",
@@ -157,7 +133,7 @@
     "npm.prettier:fix.executor": "Run",
     "npm.start.executor": "Run",
     "prettierjs.PrettierConfiguration.Package": "D:\\store-inventory-sales-management-system-be\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "to.speed.mode.migration.done": "true",
     "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
@@ -168,7 +144,7 @@
       <recent name="D:\store-inventory-sales-management-system-be\store-inventory-sales-management-system-be\src\routes\v1" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.dev">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -228,8 +204,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.dev" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.prettier:fix" />
         <item itemvalue="npm.prettier" />
         <item itemvalue="npm.lint:fix" />
@@ -265,6 +241,19 @@
       <workItem from="1778938607623" duration="2030000" />
       <workItem from="1778913456688" duration="3829000" />
       <workItem from="1778984430939" duration="3459000" />
+      <workItem from="1779239933245" duration="14469000" />
+      <workItem from="1779336613951" duration="7000" />
+      <workItem from="1779310902164" duration="17000" />
+      <workItem from="1779311091341" duration="409000" />
+      <workItem from="1779312047993" duration="438000" />
+      <workItem from="1779504172765" duration="22000" />
+      <workItem from="1779504241564" duration="690000" />
+      <workItem from="1779506365897" duration="8448000" />
+      <workItem from="1779532980406" duration="225000" />
+      <workItem from="1779533387474" duration="3034000" />
+      <workItem from="1779610179509" duration="599000" />
+      <workItem from="1779612430547" duration="3896000" />
+      <workItem from="1779617721789" duration="2515000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post('/', validate(productValidation.createProduct), productController.createProduct);
 
-// Get all projects
+// Get all products
 router.get('/', validate(productValidation.getProducts), productController.getProducts);
 
 router.get('/:productId', validate(productValidation.getProduct), productController.getProduct);
