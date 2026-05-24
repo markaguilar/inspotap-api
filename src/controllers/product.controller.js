@@ -17,11 +17,11 @@ const createProduct = catchAsync(async (req, res) => {
  */
 const getProducts = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name']);
-  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page', 'search']);
 
-  const projects = await productService.queryProducts(filter, options);
+  const products = await productService.queryProducts(filter, options);
 
-  res.send(projects);
+  res.send(products);
 });
 
 const getProduct = catchAsync(async (req, res) => {

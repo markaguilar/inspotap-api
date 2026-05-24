@@ -1,10 +1,10 @@
 const httpStatus = require('http-status');
-const { Product, Project } = require('../models');
-const { getUserById } = require('./user.service');
+const { Product } = require('../models');
+// const { getUserById } = require('./user.service');
 const ApiError = require('../utils/ApiError');
 
 const createProduct = async (productBody) => {
-  const user = await getUserById(productBody.user);
+  // const user = await getUserById(productBody.user);
 
   /*   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
@@ -16,7 +16,17 @@ const createProduct = async (productBody) => {
 };
 
 const queryProducts = async (filter = {}, options = {}) => {
-  const { sortBy = 'createdAt:desc', limit = 10, page = 1, ...restOptions } = options;
+  const { sortBy = 'createdAt:desc', limit = 10, page = 1, search, ...restOptions } = options;
+
+  const queryFilter = { ...filter };
+
+  if (search) {
+    queryFilter.$or = [
+      { sku: search }, // exact barcode/SKU match
+      { name: { $regex: search, $options: 'i' } },
+      { sku: { $regex: search, $options: 'i' } },
+    ];
+  }
 
   const paginateOptions = {
     sortBy,
@@ -25,7 +35,7 @@ const queryProducts = async (filter = {}, options = {}) => {
     ...restOptions,
   };
 
-  return Product.paginate(filter, paginateOptions);
+  return Product.paginate(queryFilter, paginateOptions);
 };
 
 const getProductById = async (productId) => {
