@@ -13,6 +13,7 @@ const unitRoute = require('./unit.route');
 const transactionRoute = require('./transaction.route');
 const supplierRoute = require('./supplier.route');
 const reportRoute = require('./report.route');
+const stockAdjustmentRoute = require('./stockAdjustment.route');
 
 const config = require('../../config/config');
 
@@ -62,6 +63,10 @@ const defaultRoutes = [
   {
     path: '/reports',
     route: reportRoute,
+  },
+  {
+    path: '/stock-adjustments',
+    route: stockAdjustmentRoute,
   },
 ];
 

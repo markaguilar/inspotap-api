@@ -15,3 +15,6 @@ module.exports.shiftValidation = require('./shift.validation');
 
 // reports
 module.exports.reportsValidation = require('./report.validation');
+
+// stock
+module.exports.stockAdjustmentValidation = require('./stockAdjustment.validation');

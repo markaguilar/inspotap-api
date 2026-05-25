@@ -15,3 +15,6 @@ module.exports.shiftController = require('./shift.controller');
 
 // reports
 module.exports.reportController = require('./report.controller');
+
+// stocks
+module.exports.stockAdjustmentController = require('./stockAdjustment.controller');

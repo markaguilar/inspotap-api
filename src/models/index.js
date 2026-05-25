@@ -18,3 +18,6 @@ module.exports.AuditLog = require('./auditLog.model');
 
 // shift
 module.exports.ShiftLog = require('./shift.model');
+
+// stocks
+module.exports.StockAdjustment = require('./stockAdjustment.model');

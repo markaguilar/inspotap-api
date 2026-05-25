@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
 const { productService } = require('../services');
 const pick = require('../utils/pick');
+const stockAdjustmentService = require('../services/stockAdjustment.service');
 
 const createProduct = catchAsync(async (req, res) => {
   const product = await productService.createProduct({
@@ -38,9 +39,30 @@ const updateProduct = catchAsync(async (req, res) => {
   res.send(updatedProduct);
 });
 
+/**
+ * POST /api/v1/products/:productId/adjust-stock
+ */
+const adjustStock = catchAsync(async (req, res) => {
+  const { adjustment, product } = await stockAdjustmentService.adjustStock(req.params.productId, req.body, req.user, req);
+
+  res.status(httpStatus.CREATED).json({
+    success: true,
+    data: {
+      adjustment,
+      product: {
+        _id: product._id,
+        name: product.name,
+        stockQty: product.stockQty,
+      },
+    },
+    message: `Stock ${req.body.type === 'add' ? 'added' : 'deducted'} successfully.`,
+  });
+});
+
 module.exports = {
   createProduct,
   getProducts,
   getProduct,
   updateProduct,
+  adjustStock,
 };

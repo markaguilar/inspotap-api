@@ -20,6 +20,8 @@ const allRoles = {
     'getSuppliers',
     'getReports',
     'getAuditLogs',
+    'getStockAdjustment',
+    'adjustStock',
   ],
 };
 

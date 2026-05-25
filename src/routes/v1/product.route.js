@@ -5,7 +5,8 @@ const validate = require('../../middlewares/validate');
 // controller
 const { productController } = require('../../controllers');
 
-const { productValidation } = require('../../validations');
+const { productValidation, stockAdjustmentValidation } = require('../../validations');
+const auth = require('../../middlewares/auth');
 
 const router = express.Router();
 
@@ -17,5 +18,12 @@ router.get('/', validate(productValidation.getProducts), productController.getPr
 router.get('/:productId', validate(productValidation.getProduct), productController.getProduct);
 
 router.put('/:productId', validate(productValidation.updateProduct), productController.updateProduct);
+
+router.post(
+  '/:productId/adjust-stock',
+  auth('adjustStock'),
+  validate(stockAdjustmentValidation.adjustStock),
+  productController.adjustStock
+);
 
 module.exports = router;

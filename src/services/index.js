@@ -20,3 +20,6 @@ module.exports.shiftService = require('./shift.service');
 
 // reports
 module.exports.reportsService = require('./report.service');
+
+// stocks
+module.exports.stockAdjustmentService = require('./stockAdjustment.service');
