@@ -5,21 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c320be33-ebc2-470a-838d-d7ab2b19f223" name="Changes" comment="fixup! initial commit">
-      <change afterPath="$PROJECT_DIR$/src/controllers/stockAdjustment.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/stockAdjustment.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/v1/stockAdjustment.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/profitMargin.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/stockAdjustment.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validations/stockAdjustment.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/purchaseOrder.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/purchaseOrder.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/supplier.validation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/roles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/product.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/product.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/supplier.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/supplier.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/product.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/product.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/validations/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/supplier.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/supplier.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/supplier.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/supplier.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/report.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/report.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/supplier.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/supplier.service.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,61 +43,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.282692191193475E-309" />
-      <entry key="MS500" value="2.161411340546155E-62" />
-      <entry key="S2" value="6.24648805150219E-16" />
-      <entry key="S5" value="1.2523763337946078E-6" />
-      <entry key="S10" value="0.0015984814858147655" />
-      <entry key="S30" value="0.22730617129992542" />
-      <entry key="S60" value="0.9918924826573136" />
-      <entry key="M2" value="2.7626144210206434" />
-      <entry key="M5" value="7.676583943626423" />
-      <entry key="M10" value="22.05490208170489" />
-      <entry key="M15" value="44.57056684304425" />
-      <entry key="M30" value="117.84244427705204" />
-      <entry key="H1" value="222.04423593163298" />
-      <entry key="H2" value="321.3428922085083" />
-      <entry key="H4" value="392.6115938040955" />
-      <entry key="D1" value="467.84923040637364" />
-      <entry key="W1" value="482.5026075824149" />
+      <entry key="MS100" value="1.0027361305461016" />
+      <entry key="MS500" value="1.5388102549231664" />
+      <entry key="S2" value="3.4231325460171464" />
+      <entry key="S5" value="5.363014309855111" />
+      <entry key="S10" value="6.699598455494672" />
+      <entry key="S30" value="8.070337112229229" />
+      <entry key="S60" value="8.538011421463832" />
+      <entry key="M2" value="9.220783408968158" />
+      <entry key="M5" value="13.87770760586457" />
+      <entry key="M10" value="26.061082339742182" />
+      <entry key="M15" value="41.79167304674831" />
+      <entry key="M30" value="100.6261305874497" />
+      <entry key="H1" value="211.25581774792576" />
+      <entry key="H2" value="341.5512439573689" />
+      <entry key="H4" value="447.68140367015985" />
+      <entry key="D1" value="569.8114204865936" />
+      <entry key="W1" value="594.7197230726791" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0000000000003981" />
-      <entry key="S60" value="1.000001249635967" />
-      <entry key="M2" value="1.0022478726128166" />
-      <entry key="M5" value="1.2188556584335242" />
-      <entry key="M10" value="2.1046854636846133" />
-      <entry key="M15" value="2.987230834582437" />
-      <entry key="M30" value="5.060725079315513" />
-      <entry key="H1" value="7.7719372811493175" />
-      <entry key="H2" value="10.431388740383628" />
-      <entry key="H4" value="12.395462220878763" />
-      <entry key="D1" value="14.512033348471748" />
-      <entry key="W1" value="14.928826913639941" />
+      <entry key="MS100" value="2.6652070057578315E-80" />
+      <entry key="MS500" value="1.2165954537653894E-16" />
+      <entry key="S2" value="1.0502351447893552E-4" />
+      <entry key="S5" value="0.025616194901190714" />
+      <entry key="S10" value="0.16005060106475932" />
+      <entry key="S30" value="0.5429407474625668" />
+      <entry key="S60" value="0.7368451312606871" />
+      <entry key="M2" value="0.8583969292132031" />
+      <entry key="M5" value="0.9426135938013246" />
+      <entry key="M10" value="1.052172681251816" />
+      <entry key="M15" value="1.3238516849187414" />
+      <entry key="M30" value="2.7072283444208076" />
+      <entry key="H1" value="5.522367185144792" />
+      <entry key="H2" value="8.959125706491875" />
+      <entry key="H4" value="11.8278610427874" />
+      <entry key="D1" value="15.188732529046339" />
+      <entry key="W1" value="15.880856080612164" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.280958936515714E-5" />
-      <entry key="MS500" value="0.11792978136192" />
-      <entry key="S2" value="0.5860111418372573" />
-      <entry key="S5" value="0.80753794360061" />
-      <entry key="S10" value="0.9001238359755658" />
-      <entry key="S30" value="1.1871176442869733" />
-      <entry key="S60" value="1.9628657386600474" />
-      <entry key="M2" value="3.7415501857394506" />
-      <entry key="M5" value="8.877467460611566" />
-      <entry key="M10" value="24.141618130398637" />
-      <entry key="M15" value="47.5392032067924" />
-      <entry key="M30" value="122.88453397626593" />
-      <entry key="H1" value="229.7999833821474" />
-      <entry key="H2" value="331.76268604168405" />
-      <entry key="H4" value="404.9999495699449" />
-      <entry key="D1" value="482.35984276119876" />
-      <entry key="W1" value="497.4312248224308" />
+      <entry key="MS100" value="0.8088056870828151" />
+      <entry key="MS500" value="1.4720968969449797" />
+      <entry key="S2" value="3.3828760906721826" />
+      <entry key="S5" value="5.33464227456135" />
+      <entry key="S10" value="6.784261773645548" />
+      <entry key="S30" value="8.554085198296052" />
+      <entry key="S60" value="9.235924418958945" />
+      <entry key="M2" value="10.046671880063444" />
+      <entry key="M5" value="14.7786063522784" />
+      <entry key="M10" value="27.071526951739465" />
+      <entry key="M15" value="43.07737701511962" />
+      <entry key="M30" value="103.30245855883305" />
+      <entry key="H1" value="216.75414691400982" />
+      <entry key="H2" value="350.4935168223593" />
+      <entry key="H4" value="459.4988616466627" />
+      <entry key="D1" value="584.9980360355307" />
+      <entry key="W1" value="610.600265484794" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -113,42 +109,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.14.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.12.4&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/dev-mark/WebstormProjects/store-inventory-sales-management-system-be&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;npm.coverage:coveralls.executor&quot;: &quot;Run&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lint.executor&quot;: &quot;Run&quot;,
-    &quot;npm.lint:fix.executor&quot;: &quot;Run&quot;,
-    &quot;npm.prepare.executor&quot;: &quot;Run&quot;,
-    &quot;npm.prettier.executor&quot;: &quot;Run&quot;,
-    &quot;npm.prettier:fix.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;D:\\store-inventory-sales-management-system-be\\node_modules\\prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2025.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.nodejs.core.library.configured.version": "24.14.0",
+    "javascript.nodejs.core.library.typings.version": "24.13.3",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/dev-mark/WebstormProjects/store-inventory-sales-management-system-be",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "npm.coverage:coveralls.executor": "Run",
+    "npm.dev.executor": "Run",
+    "npm.lint.executor": "Run",
+    "npm.lint:fix.executor": "Run",
+    "npm.prepare.executor": "Run",
+    "npm.prettier.executor": "Run",
+    "npm.prettier:fix.executor": "Run",
+    "npm.start.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "D:\\store-inventory-sales-management-system-be\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\store-inventory-sales-management-system-be\store-inventory-sales-management-system-be\src\routes\v1" />
@@ -225,7 +221,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-WS-261.24374.125" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.8665.259" />
       </set>
     </attachedChunks>
   </component>
@@ -265,7 +261,27 @@
       <workItem from="1779612430547" duration="3896000" />
       <workItem from="1779617721789" duration="2515000" />
       <workItem from="1779623073554" duration="50000" />
-      <workItem from="1779700144711" duration="5115000" />
+      <workItem from="1779700144711" duration="5160000" />
+      <workItem from="1779845598858" duration="2302000" />
+      <workItem from="1779883565527" duration="105000" />
+      <workItem from="1779964690460" duration="3540000" />
+      <workItem from="1780026542300" duration="10000" />
+      <workItem from="1780026671394" duration="3000" />
+      <workItem from="1780007591622" duration="6236000" />
+      <workItem from="1780487967308" duration="14000" />
+      <workItem from="1780684264130" duration="854000" />
+      <workItem from="1780724895778" duration="4861000" />
+      <workItem from="1780734379960" duration="1453000" />
+      <workItem from="1781136001309" duration="1894000" />
+      <workItem from="1782850454199" duration="1789000" />
+      <workItem from="1782902844442" duration="1462000" />
+      <workItem from="1782977295556" duration="697000" />
+      <workItem from="1783130982880" duration="2092000" />
+      <workItem from="1783134852237" duration="1056000" />
+      <workItem from="1784178868073" duration="1198000" />
+      <workItem from="1784199168383" duration="1837000" />
+      <workItem from="1784239246307" duration="86000" />
+      <workItem from="1784376107485" duration="2464000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
