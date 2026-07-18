@@ -213,7 +213,12 @@ const getDaily = async (date, includeManual = true) => {
         { $match: baseMatch },
         {
           $group: {
-            _id: { $hour: '$saleDate' },
+            _id: {
+              $hour: {
+                date: '$saleDate',
+                timezone: 'Asia/Manila',
+              },
+            },
             revenue: { $sum: '$totalAmount' },
             transactions: { $sum: 1 },
           },

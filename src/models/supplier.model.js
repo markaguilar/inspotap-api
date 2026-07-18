@@ -38,6 +38,18 @@ const supplierSchema = mongoose.Schema(
       province: { type: String, trim: true, default: '' },
     },
 
+    category: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+
+    deliverySchedule: {
+      type: String,
+      trim: true,
+      default: '',
+    },
+
     // ── Business terms ────────────────────────────────────────────────────
     paymentTerms: {
       type: String,
