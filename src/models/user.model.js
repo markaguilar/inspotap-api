@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const { Schema } = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
 
@@ -11,18 +12,12 @@ const userSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    username: {
-      type: String,
-      required: true,
-    },
+    username: { type: String, unique: true, index: true },
     bio: {
       type: String,
-      maxLength: 100,
+      maxLength: 280,
     },
-    profilePicture: {
-      type: String,
-      trim: true,
-    },
+    avatarUrl: { type: String, default: '' },
     email: {
       type: String,
       required: true,
@@ -47,23 +42,16 @@ const userSchema = mongoose.Schema(
       },
       private: true, // used by the toJSON plugin
     },
+
+    plan: { type: Schema.Types.ObjectId, ref: 'Plan', required: true },
+    planStatus: { type: String, enum: ['active', 'pending_upgrade', 'expired'], default: 'active' },
+    planExpiresAt: { type: Date, default: null },
+    photoCount: { type: Number, default: 0 },
     role: {
       type: String,
       enum: roles,
-      default: 'cashier',
+      default: 'user',
     },
-
-    // ── POS access control ─────────────────────────────────────────────────
-    /**
-     * Owner can toggle this off to immediately block a cashier from processing
-     * checkouts without deleting their account.
-     * Owners always bypass this — checked in canCheckout.middleware.js.
-     */
-    canCheckout: {
-      type: Boolean,
-      default: true,
-    },
-
     /**
      * Hard disable — blocks login entirely.
      * Use canCheckout to block POS only; use isActive to block everything.
@@ -71,16 +59,6 @@ const userSchema = mongoose.Schema(
     isActive: {
       type: Boolean,
       default: true,
-    },
-
-    // ── Security & audit ───────────────────────────────────────────────────
-    /**
-     * Daily checkout limit in pesos.
-     * Null = no limit. Set to e.g. 10000 for a ₱10,000/day cap per cashier.
-     */
-    dailyCheckoutLimit: {
-      type: Number,
-      default: null,
     },
 
     /**
@@ -161,10 +139,9 @@ userSchema.methods.toSafeObject = function () {
     _id: this._id,
     name: this.name,
     email: this.email,
+    bio: this.bio,
     role: this.role,
-    canCheckout: this.canCheckout,
     isActive: this.isActive,
-    dailyCheckoutLimit: this.dailyCheckoutLimit,
     lastLoginAt: this.lastLoginAt,
     createdAt: this.createdAt,
     updatedAt: this.updatedAt,

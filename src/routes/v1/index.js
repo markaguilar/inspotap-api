@@ -3,17 +3,12 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const meRoute = require('./me.route');
 const docsRoute = require('./docs.route');
-const projectRoute = require('./project.route');
-const proposalRoute = require('./proposal.route');
 
-// store inventory and sales management
-const productRoute = require('./product.route');
-const categoryRoute = require('./category.route');
-const unitRoute = require('./unit.route');
-const transactionRoute = require('./transaction.route');
-const supplierRoute = require('./supplier.route');
-const reportRoute = require('./report.route');
-const stockAdjustmentRoute = require('./stockAdjustment.route');
+const collectionRoute = require('./collection.route');
+const photosRoute = require('./collection.route');
+const feedRoute = require('./feed.route');
+const planRoute = require('./plan.route');
+// const savedRoute = require('./saved.route');
 
 const config = require('../../config/config');
 
@@ -33,40 +28,20 @@ const defaultRoutes = [
     route: userRoute,
   },
   {
-    path: '/projects',
-    route: projectRoute,
+    path: '/collections',
+    route: collectionRoute,
   },
   {
-    path: '/proposals',
-    route: proposalRoute,
+    path: '/photos',
+    route: photosRoute,
   },
   {
-    path: '/products',
-    route: productRoute,
+    path: '/feed',
+    route: feedRoute,
   },
   {
-    path: '/categories',
-    route: categoryRoute,
-  },
-  {
-    path: '/units',
-    route: unitRoute,
-  },
-  {
-    path: '/transactions',
-    route: transactionRoute,
-  },
-  {
-    path: '/suppliers',
-    route: supplierRoute,
-  },
-  {
-    path: '/reports',
-    route: reportRoute,
-  },
-  {
-    path: '/stock-adjustments',
-    route: stockAdjustmentRoute,
+    path: '/plans',
+    route: planRoute,
   },
 ];
 

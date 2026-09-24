@@ -23,3 +23,14 @@ module.exports.reportsService = require('./report.service');
 
 // stocks
 module.exports.stockAdjustmentService = require('./stockAdjustment.service');
+
+// inspotap
+module.exports.adminService = require('./admin.service');
+module.exports.cloudinaryService = require('./cloudinary.service');
+module.exports.collectionService = require('./collection.service');
+module.exports.feedService = require('./feed.service');
+module.exports.photoService = require('./photo.service');
+module.exports.planService = require('./plan.service');
+module.exports.planUpgradeService = require('./planUpgrade.service');
+module.exports.profileService = require('./profile.service');
+module.exports.savedService = require('./saved.service');

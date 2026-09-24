@@ -5,17 +5,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c320be33-ebc2-470a-838d-d7ab2b19f223" name="Changes" comment="fixup! initial commit">
-      <change afterPath="$PROJECT_DIR$/src/services/purchaseOrder.service.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validations/purchaseOrder.validation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/validations/supplier.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/cloudinary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/plans.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/admin.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/collection.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/feed.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/photo.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/plan.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/planUpgrade.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/profile.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/saved.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/middlewares/admin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/middlewares/internalOnly.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/middlewares/optionalAuth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/middlewares/planLimit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/middlewares/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/collection.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/event.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/payment.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/photo.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/plan.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/planUpgradeRequest.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/savedPhoto.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/admin.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/collection.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/feed.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/photo.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/plan.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/planUpgrade.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/v1/profile.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/expirePlans.cron.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scripts/seedPlans.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/admin.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/cloudinary.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/collection.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/feed.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/photo.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/plan.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/planUpgrade.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/profile.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/saved.service.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/collection.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/feed.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/photo.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/planUpgrade.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/profile.validation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/validations/saved.validation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/roles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/roles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/supplier.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/supplier.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/supplier.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/supplier.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/v1/supplier.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/supplier.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/report.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/report.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/supplier.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/supplier.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/auth.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/auth.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/v1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/v1/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/auth.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/validations/unit.validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/validations/unit.validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,124 +84,134 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/markaguilar/store-inventory-sales-management-system-be-.git&quot;,
-    &quot;accountId&quot;: &quot;20d89011-15ae-4fcb-b146-19a490d8fd84&quot;
+    &quot;url&quot;: &quot;https://github.com/markaguilar/inspotap-api.git&quot;,
+    &quot;accountId&quot;: &quot;a99beea0-ac6a-4b08-b339-3ee802390f79&quot;
   }
 }</component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupnpm">
+      <scroll-view-position x="0" y="0" />
+    </layout>
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0027361305461016" />
-      <entry key="MS500" value="1.5388102549231664" />
-      <entry key="S2" value="3.4231325460171464" />
-      <entry key="S5" value="5.363014309855111" />
-      <entry key="S10" value="6.699598455494672" />
-      <entry key="S30" value="8.070337112229229" />
-      <entry key="S60" value="8.538011421463832" />
-      <entry key="M2" value="9.220783408968158" />
-      <entry key="M5" value="13.87770760586457" />
-      <entry key="M10" value="26.061082339742182" />
-      <entry key="M15" value="41.79167304674831" />
-      <entry key="M30" value="100.6261305874497" />
-      <entry key="H1" value="211.25581774792576" />
-      <entry key="H2" value="341.5512439573689" />
-      <entry key="H4" value="447.68140367015985" />
-      <entry key="D1" value="569.8114204865936" />
-      <entry key="W1" value="594.7197230726791" />
+      <entry key="MS100" value="3.340653769004249E-26" />
+      <entry key="MS500" value="8.030938375163568E-6" />
+      <entry key="S2" value="0.05327754312445059" />
+      <entry key="S5" value="0.38020993968737854" />
+      <entry key="S10" value="1.3964741929374265" />
+      <entry key="S30" value="5.202272785281484" />
+      <entry key="S60" value="7.580243278675859" />
+      <entry key="M2" value="9.48320968860317" />
+      <entry key="M5" value="13.243972038389774" />
+      <entry key="M10" value="23.308759536863672" />
+      <entry key="M15" value="36.70181502631858" />
+      <entry key="M30" value="78.71796046302623" />
+      <entry key="H1" value="150.17002699787417" />
+      <entry key="H2" value="265.7015546853846" />
+      <entry key="H4" value="450.0315440872721" />
+      <entry key="D1" value="928.0395976943623" />
+      <entry key="W1" value="1085.2832227655213" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.6652070057578315E-80" />
-      <entry key="MS500" value="1.2165954537653894E-16" />
-      <entry key="S2" value="1.0502351447893552E-4" />
-      <entry key="S5" value="0.025616194901190714" />
-      <entry key="S10" value="0.16005060106475932" />
-      <entry key="S30" value="0.5429407474625668" />
-      <entry key="S60" value="0.7368451312606871" />
-      <entry key="M2" value="0.8583969292132031" />
-      <entry key="M5" value="0.9426135938013246" />
-      <entry key="M10" value="1.052172681251816" />
-      <entry key="M15" value="1.3238516849187414" />
-      <entry key="M30" value="2.7072283444208076" />
-      <entry key="H1" value="5.522367185144792" />
-      <entry key="H2" value="8.959125706491875" />
-      <entry key="H4" value="11.8278610427874" />
-      <entry key="D1" value="15.188732529046339" />
-      <entry key="W1" value="15.880856080612164" />
+      <entry key="MS100" value="1.0010180330789462" />
+      <entry key="MS500" value="1.2624648130751097" />
+      <entry key="S2" value="2.1872925971979984" />
+      <entry key="S5" value="3.2132186889195427" />
+      <entry key="S10" value="3.9140961117526563" />
+      <entry key="S30" value="4.581934573615565" />
+      <entry key="S60" value="4.7831094791963675" />
+      <entry key="M2" value="4.937382872767503" />
+      <entry key="M5" value="6.556476239150648" />
+      <entry key="M10" value="10.5239059027863" />
+      <entry key="M15" value="13.754412536049598" />
+      <entry key="M30" value="21.341636720830497" />
+      <entry key="H1" value="33.56464803165936" />
+      <entry key="H2" value="49.960327149514285" />
+      <entry key="H4" value="67.33794835466598" />
+      <entry key="D1" value="96.6519500895408" />
+      <entry key="W1" value="104.5572960582554" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8088056870828151" />
-      <entry key="MS500" value="1.4720968969449797" />
-      <entry key="S2" value="3.3828760906721826" />
-      <entry key="S5" value="5.33464227456135" />
-      <entry key="S10" value="6.784261773645548" />
-      <entry key="S30" value="8.554085198296052" />
-      <entry key="S60" value="9.235924418958945" />
-      <entry key="M2" value="10.046671880063444" />
-      <entry key="M5" value="14.7786063522784" />
-      <entry key="M10" value="27.071526951739465" />
-      <entry key="M15" value="43.07737701511962" />
-      <entry key="M30" value="103.30245855883305" />
-      <entry key="H1" value="216.75414691400982" />
-      <entry key="H2" value="350.4935168223593" />
-      <entry key="H4" value="459.4988616466627" />
-      <entry key="D1" value="584.9980360355307" />
-      <entry key="W1" value="610.600265484794" />
+      <entry key="MS100" value="0.0012533457130762676" />
+      <entry key="MS500" value="0.2766650701230795" />
+      <entry key="S2" value="1.447917928119964" />
+      <entry key="S5" value="3.0731457747795092" />
+      <entry key="S10" value="4.984561144603214" />
+      <entry key="S30" value="9.654580143675206" />
+      <entry key="S60" value="12.29507608002419" />
+      <entry key="M2" value="14.384188387589665" />
+      <entry key="M5" value="19.77854698475052" />
+      <entry key="M10" value="33.81249108004073" />
+      <entry key="M15" value="50.43664517447646" />
+      <entry key="M30" value="100.04141414262726" />
+      <entry key="H1" value="183.7184510559575" />
+      <entry key="H2" value="315.64807001427073" />
+      <entry key="H4" value="517.3582347241246" />
+      <entry key="D1" value="1024.6878795689672" />
+      <entry key="W1" value="1189.8399124044515" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="3C7PoBLIs37rvuly1hWVormVCsw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "javascript.nodejs.core.library.configured.version": "24.14.0",
-    "javascript.nodejs.core.library.typings.version": "24.13.3",
-    "javascript.preferred.runtime.type.id": "node",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/home/dev-mark/WebstormProjects/store-inventory-sales-management-system-be",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "npm.coverage:coveralls.executor": "Run",
-    "npm.dev.executor": "Run",
-    "npm.lint.executor": "Run",
-    "npm.lint:fix.executor": "Run",
-    "npm.prepare.executor": "Run",
-    "npm.prettier.executor": "Run",
-    "npm.prettier:fix.executor": "Run",
-    "npm.start.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "D:\\store-inventory-sales-management-system-be\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2025.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;config&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.16.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.13.3&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Project/inspotap/inspotap-api&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.coverage:coveralls.executor&quot;: &quot;Run&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;npm.lint.executor&quot;: &quot;Run&quot;,
+    &quot;npm.lint:fix.executor&quot;: &quot;Run&quot;,
+    &quot;npm.prepare.executor&quot;: &quot;Run&quot;,
+    &quot;npm.prettier.executor&quot;: &quot;Run&quot;,
+    &quot;npm.prettier:fix.executor&quot;: &quot;Run&quot;,
+    &quot;npm.start.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Project\\inspotap\\inspotap-api\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\store-inventory-sales-management-system-be\store-inventory-sales-management-system-be\src\routes\v1" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.dev">
+  <component name="RunManager" selected="npm.lint:fix">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -210,18 +271,18 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.lint:fix" />
         <item itemvalue="npm.dev" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.prettier:fix" />
         <item itemvalue="npm.prettier" />
-        <item itemvalue="npm.lint:fix" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.8665.259" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-WS-262.10968.77" />
       </set>
     </attachedChunks>
   </component>
@@ -282,6 +343,18 @@
       <workItem from="1784199168383" duration="1837000" />
       <workItem from="1784239246307" duration="86000" />
       <workItem from="1784376107485" duration="2464000" />
+      <workItem from="1787450399562" duration="824000" />
+      <workItem from="1787452239405" duration="1305000" />
+      <workItem from="1787454627410" duration="1206000" />
+      <workItem from="1788136162126" duration="1037000" />
+      <workItem from="1788143638194" duration="2980000" />
+      <workItem from="1788571156704" duration="1395000" />
+      <workItem from="1789174320998" duration="100000" />
+      <workItem from="1789255184237" duration="16204000" />
+      <workItem from="1790229302179" duration="9723000" />
+      <workItem from="1790243401280" duration="812000" />
+      <workItem from="1790244242249" duration="9932000" />
+      <workItem from="1790256620858" duration="328000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

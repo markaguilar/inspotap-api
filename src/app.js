@@ -25,13 +25,14 @@ const ApiError = require('./utils/ApiError');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const app = express();
+app.set('trust proxy', 1);
 const httpServer = createServer(app); // ← wrap Express in an HTTP server
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Socket.io setup
 // ─────────────────────────────────────────────────────────────────────────────
 
-const allowedOrigins = ['http://localhost:5173', config.frontendUrl].filter(Boolean); // remove undefined if frontendUrl is not set
+const allowedOrigins = ['http://localhost:3000', config.frontendUrl].filter(Boolean); // remove undefined if frontendUrl is not set
 
 const io = new Server(httpServer, {
   cors: {

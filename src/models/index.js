@@ -22,3 +22,12 @@ module.exports.ShiftLog = require('./shift.model');
 
 // stocks
 module.exports.StockAdjustment = require('./stockAdjustment.model');
+
+// inspotap
+module.exports.Collection = require('./collection.model');
+module.exports.Event = require('./event.model');
+module.exports.Payment = require('./payment.model');
+module.exports.Photo = require('./photo.model');
+module.exports.Plan = require('./plan.model');
+module.exports.PlanUpgradeRequest = require('./planUpgradeRequest.model');
+module.exports.SavedPhoto = require('./planUpgradeRequest.model');

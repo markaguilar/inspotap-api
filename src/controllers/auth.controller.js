@@ -31,13 +31,13 @@ const logout = catchAsync(async (req, res) => {
 });
 
 const refreshTokens = catchAsync(async (req, res) => {
-  const tokens = await authService.refreshAuth(req.cookies.refreshToken);
+  const { user, tokens } = await authService.refreshAuth(req.body.refreshToken);
   const cookies = await tokenService.generateAuthCookies(tokens);
 
   res.cookie(cookies.accessToken.name, cookies.accessToken.value, cookies.accessToken.options);
   res.cookie(cookies.refreshToken.name, cookies.refreshToken.value, cookies.refreshToken.options);
 
-  res.send({ ...tokens });
+  res.send({ user, ...tokens });
 });
 
 const forgotPassword = catchAsync(async (req, res) => {

@@ -24,6 +24,7 @@ const envVarsSchema = Joi.object()
     SMTP_PASSWORD: Joi.string().description('password for email server'),
     EMAIL_FROM: Joi.string().description('the from field in the emails sent by the app'),
     FRONTEND_URL: Joi.string().description('front end url'),
+    INTERNAL_API_SECRET: Joi.string().description('internal api secret with the nextjs project'),
   })
   .unknown();
 
@@ -62,5 +63,6 @@ module.exports = {
     },
     from: envVars.EMAIL_FROM,
   },
-  frontendUrl: envVars.FRONTEND_URL || 'http://localhost:5173',
+  frontendUrl: envVars.FRONTEND_URL || 'http://localhost:3000',
+  internalApiSecret: envVars.INTERNAL_API_SECRET || 'INSPOTAP123123',
 };

@@ -13,26 +13,6 @@ const objectId = (value, helpers) => {
 // These are validated on create/update to keep unit names consistent.
 // If you want to allow any string, remove the .valid() call.
 
-const UNIT_NAMES = [
-  'piece',
-  'pack',
-  'bottle',
-  'can',
-  'sachet',
-  'kilo',
-  'gram',
-  'liter',
-  'bar',
-  'tube',
-  'box',
-  'bundle',
-  'roll',
-  'tray',
-  'bag',
-  'set',
-  'pair',
-];
-
 // ── POST /units ───────────────────────────────────────────────────────────────
 
 const createUnit = {
