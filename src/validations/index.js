@@ -18,3 +18,11 @@ module.exports.reportsValidation = require('./report.validation');
 
 // stock
 module.exports.stockAdjustmentValidation = require('./stockAdjustment.validation');
+
+// inspotap
+module.exports.collectionValidation = require('./collection.validation');
+module.exports.feedValidation = require('./feed.validation');
+module.exports.photoValidation = require('./photo.validation');
+module.exports.planUpgradedValidation = require('./planUpgrade.validation');
+module.exports.profileValidation = require('./profile.validation');
+module.exports.savedValidation = require('./saved.validation');

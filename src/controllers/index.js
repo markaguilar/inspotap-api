@@ -18,3 +18,11 @@ module.exports.reportController = require('./report.controller');
 
 // stocks
 module.exports.stockAdjustmentController = require('./stockAdjustment.controller');
+
+// inspotap
+module.exports.adminController = require('./admin.controller');
+module.exports.collectionController = require('./collection.controller');
+module.exports.feedController = require('./feed.controller');
+module.exports.photoController = require('./photo.controller');
+module.exports.planUpgradeController = require('./planUpgrade.controller');
+module.exports.profileController = require('./profile.controller');
