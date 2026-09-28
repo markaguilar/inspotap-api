@@ -1,5 +1,5 @@
-import Joi from 'joi';
-import { objectId } from './custom.validation';
+const Joi = require('joi');
+const { objectId } = require('./custom.validation');
 
 const createUpgradeRequest = {
   body: Joi.object().keys({

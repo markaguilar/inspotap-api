@@ -1,5 +1,5 @@
-import Joi from 'joi';
-import { objectId } from './custom.validation';
+const Joi = require('joi');
+const { objectId } = require('./custom.validation');
 
 // eslint-disable-next-line import/prefer-default-export
 const getFeed = {

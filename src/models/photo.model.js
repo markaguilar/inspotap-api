@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 const hotspotSchema = mongoose.Schema(
   {
@@ -13,7 +13,7 @@ const hotspotSchema = mongoose.Schema(
 
 const photoSchema = mongoose.Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },
     imageUrl: { type: String, required: true },
     cloudinaryPublicId: { type: String, required: true },
     width: { type: Number, required: true },

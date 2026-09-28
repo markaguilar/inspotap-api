@@ -1,9 +1,9 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 const paymentSchema = mongoose.Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
-    plan: { type: Schema.Types.ObjectId, ref: 'Plan', required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },
+    plan: { type: mongoose.Schema.Types.ObjectId, ref: 'Plan', required: true },
     amount: { type: Number, required: true },
     currency: { type: String, default: 'PHP' },
     method: { type: String, enum: ['gcash', 'bank_transfer', 'paymongo_card', 'paymongo_gcash'], required: true },
@@ -12,7 +12,7 @@ const paymentSchema = mongoose.Schema(
     proofImagePublicId: { type: String },
     status: { type: String, enum: ['pending', 'verified', 'rejected', 'refunded'], default: 'pending', index: true },
     gatewayPaymentIntentId: { type: String, default: null },
-    verifiedBy: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+    verifiedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
     verifiedAt: { type: Date, default: null },
   },
   { timestamps: true }
