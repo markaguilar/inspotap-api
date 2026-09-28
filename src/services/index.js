@@ -25,7 +25,7 @@ module.exports.reportsService = require('./report.service');
 module.exports.stockAdjustmentService = require('./stockAdjustment.service');
 
 // inspotap
-module.exports.adminService = require('./admin.service');
+// module.exports.adminService = require('./admin.service');
 module.exports.cloudinaryService = require('./cloudinary.service');
 module.exports.collectionService = require('./collection.service');
 module.exports.feedService = require('./feed.service');

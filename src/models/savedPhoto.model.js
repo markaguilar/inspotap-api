@@ -1,10 +1,10 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 const savedPhotoSchema = mongoose.Schema(
   {
-    board: { type: Schema.Types.ObjectId, ref: 'Collection', required: true, index: true },
-    photo: { type: Schema.Types.ObjectId, ref: 'Photo', required: true },
-    savedBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    board: { type: mongoose.Schema.Types.ObjectId, ref: 'Collection', required: true, index: true },
+    photo: { type: mongoose.Schema.Types.ObjectId, ref: 'Photo', required: true },
+    savedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   },
   { timestamps: true }
 );

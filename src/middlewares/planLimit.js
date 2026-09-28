@@ -1,7 +1,8 @@
-import httpStatus from 'http-status';
-import catchAsync from '../utils/catchAsync';
+const httpStatus = require('http-status');
 
-import ApiError from '../utils/ApiError';
+const catchAsync = require('../utils/catchAsync');
+
+const ApiError = require('../utils/ApiError');
 
 const { User } = require('../models');
 
@@ -14,7 +15,7 @@ const { User } = require('../models');
  * gets a clear 403 without wasting an upload attempt.
  */
 // eslint-disable-next-line import/prefer-default-export
-export const checkPhotoLimit = catchAsync(async (req, _res, next) => {
+const checkPhotoLimit = catchAsync(async (req, _res, next) => {
   const user = await User.findById(req.user.id).populate('plan');
   if (!user) throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
 

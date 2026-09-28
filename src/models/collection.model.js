@@ -1,8 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
 const collectionSchema = mongoose.Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: 'User', required: true, index: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },
     name: { type: String, required: true, maxlength: 60, trim: true },
     isDefault: { type: Boolean, default: false },
     isPublic: { type: Boolean, default: false },

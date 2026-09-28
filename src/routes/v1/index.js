@@ -5,7 +5,7 @@ const meRoute = require('./me.route');
 const docsRoute = require('./docs.route');
 
 const collectionRoute = require('./collection.route');
-const photosRoute = require('./collection.route');
+const photosRoute = require('./photo.route');
 const feedRoute = require('./feed.route');
 const planRoute = require('./plan.route');
 // const savedRoute = require('./saved.route');

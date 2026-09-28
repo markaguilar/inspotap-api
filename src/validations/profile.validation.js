@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 const updateProfile = {
   body: Joi.object()

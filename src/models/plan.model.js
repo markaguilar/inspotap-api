@@ -1,6 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+const mongoose = require('mongoose');
 
-const planSchema = new Schema(
+const planSchema = new mongoose.Schema(
   {
     key: { type: String, enum: ['free', 'spark', 'infinity'], unique: true, required: true },
     displayName: { type: String, required: true },

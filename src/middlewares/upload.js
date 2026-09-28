@@ -1,6 +1,6 @@
-import multer from 'multer';
-import httpStatus from 'http-status';
-import ApiError from '../utils/ApiError';
+const multer = require('multer');
+const httpStatus = require('http-status');
+const ApiError = require('../utils/ApiError');
 
 const storage = multer.memoryStorage(); // never write to disk — stream straight to Cloudinary
 
@@ -19,7 +19,7 @@ const upload = multer({
   fileFilter,
 });
 
-export const uploadSingleImage = upload.single('image');
-export const uploadPaymentProof = upload.single('proofImage');
+const uploadSingleImage = upload.single('image');
+const uploadPaymentProof = upload.single('proofImage');
 
 module.exports = { upload, uploadSingleImage, uploadPaymentProof };

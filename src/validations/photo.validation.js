@@ -1,6 +1,5 @@
-import Joi from 'joi';
-
-import { objectId } from './custom.validation';
+const Joi = require('joi');
+const { objectId } = require('./custom.validation');
 
 const hotspotSchema = Joi.object({
   xPercent: Joi.number().min(0).max(100).required(),
