@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const { Schema } = require('mongoose');
 
 const { toJSON, paginate } = require('./plugins');
 
@@ -42,7 +43,7 @@ const userSchema = mongoose.Schema(
       private: true, // used by the toJSON plugin
     },
 
-    plan: { type: String, enum: ['explore', 'spark', 'infinity'], default: 'explore' },
+    plan: { type: Schema.Types.ObjectId, ref: 'Plan', required: true },
     planStatus: { type: String, enum: ['active', 'pending_upgrade', 'expired'], default: 'active' },
     planExpiresAt: { type: Date, default: null },
     photoCount: { type: Number, default: 0 },
