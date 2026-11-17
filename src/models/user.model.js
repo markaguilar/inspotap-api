@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { Schema } = require('mongoose');
+
 const { toJSON, paginate } = require('./plugins');
-const { roles } = require('../config/roles');
 
 const userSchema = mongoose.Schema(
   {
@@ -47,11 +47,7 @@ const userSchema = mongoose.Schema(
     planStatus: { type: String, enum: ['active', 'pending_upgrade', 'expired'], default: 'active' },
     planExpiresAt: { type: Date, default: null },
     photoCount: { type: Number, default: 0 },
-    role: {
-      type: String,
-      enum: roles,
-      default: 'user',
-    },
+    role: { type: String, enum: ['user', 'admin'], default: 'user' },
     /**
      * Hard disable — blocks login entirely.
      * Use canCheckout to block POS only; use isActive to block everything.
